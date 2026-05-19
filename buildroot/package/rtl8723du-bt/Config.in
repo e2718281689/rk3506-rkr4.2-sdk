@@ -1,0 +1,6 @@
+config BR2_PACKAGE_RTL8723DU_BT
+	bool "rtl8723du-bt"
+	help
+	  Local Realtek USB Bluetooth driver package for RTL8723DU.
+
+	  Installs rtk_btusb and rtl8723du_fw / rtl8723du_config.

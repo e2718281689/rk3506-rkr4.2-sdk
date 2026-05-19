@@ -1,0 +1,7 @@
+config BR2_PACKAGE_RTL8723DU
+	bool "rtl8723du"
+	depends on !BR2_s390x
+	help
+	  Out-of-tree lwfinger rtl8723du USB Wi-Fi driver.
+
+	  https://github.com/lwfinger/rtl8723du

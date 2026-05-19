@@ -1,0 +1,30 @@
+#!/bin/sh
+
+case "$1" in
+	start)
+		if lsmod | grep -q '^8733bu'; then
+			ip link set wlan0 down 2>/dev/null || true
+			rmmod 8733bu 2>/dev/null || true
+		fi
+
+		if ! lsmod | grep -q '^8723du'; then
+			insmod /usr/lib/modules/rtl8723du/8723du.ko || exit 1
+		fi
+
+		ip link set wlan0 up 2>/dev/null || true
+		;;
+	stop)
+		ip link set wlan0 down 2>/dev/null || true
+		rmmod 8723du 2>/dev/null || true
+		;;
+	restart|reload)
+		"$0" stop
+		"$0" start
+		;;
+	*)
+		echo "Usage: $0 {start|stop|restart}"
+		exit 1
+		;;
+esac
+
+exit 0
