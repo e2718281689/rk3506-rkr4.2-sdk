@@ -8,7 +8,7 @@ RTL8723DU_VERSION = v5.13.4
 RTL8723DU_SITE = $(call github,lwfinger,rtl8723du,$(RTL8723DU_VERSION))
 RTL8723DU_LICENSE = GPL-2.0
 
-RTL8723DU_MODULE = /tmp/opencode/rtl8723du-wifi/8723du.ko
+RTL8723DU_MODULE = $(RTL8723DU_PKGDIR)/8723du.ko
 
 define RTL8723DU_INSTALL_TARGET_CMDS
 	rm -rf $(TARGET_DIR)/lib/modules/*/kernel/drivers/net/wireless/realtek/rtl8733bu \
