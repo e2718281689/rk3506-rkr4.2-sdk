@@ -20,8 +20,8 @@
 
 /* CFG for GT911 */
 static u8 gtp_dat_gt11[] = {
-	/* <800, 1280>*/
-	#include "GT911_800_1280_armsom-forge1.cfg"
+	/* <1200, 1920>*/
+	#include "WGJ89006B_GT911_Config_20140625_085816_0X43.cfg"
 };
 
 static u8 gtp_dat_gt9110[] = {
@@ -31,16 +31,6 @@ static u8 gtp_dat_gt9110[] = {
 
 static u8 gtp_dat_gt9111[] = {
 	#include "HLS-0102-1398V1-1060-GT911_Config_20201204_V66.cfg"
-};
-
-static u8 gtp_dat_gt9112[] = {
-	/* <800, 1280> */
-	#include "CJ080258_GT911_Config_20221117_085548.cfg"
-};
-
-static u8 gtp_dat_gt9271[] = {
-	/* <1200, 1920> */
-	#include "CJ080258_GT9271_Config_20230608_112016.cfg"
 };
 
 static u8 gtp_dat_8_9[] = {
