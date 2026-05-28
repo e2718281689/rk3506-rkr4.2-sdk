@@ -72,6 +72,13 @@ static int rk_spdifrx_hw_params(struct snd_pcm_substream *substream,
 			   SPDIFRX_INTEN_NSYNCIE_EN);
 	regmap_update_bits(spdifrx->regmap, SPDIFRX_DMACR,
 			   SPDIFRX_DMACR_RDL_MASK, SPDIFRX_DMACR_RDL(8));
+	/*
+	 * Expose only recovered PCM sample data to ALSA, not full SPDIF
+	 * subframes.
+	 */
+	regmap_update_bits(spdifrx->regmap, SPDIFRX_CFGR,
+			   SPDIFRX_CFGR_TWAD_STREAM,
+			   SPDIFRX_CFGR_TWAD_DATA_ONLY);
 	regmap_update_bits(spdifrx->regmap, SPDIFRX_CDR,
 			   SPDIFRX_CDR_AVGSEL_MASK | SPDIFRX_CDR_BYPASS_MASK,
 			   SPDIFRX_CDR_AVGSEL_MIN | SPDIFRX_CDR_BYPASS_DIS);
@@ -154,9 +161,7 @@ static struct snd_soc_dai_driver rk_spdifrx_dai = {
 			  SNDRV_PCM_RATE_48000 |
 			  SNDRV_PCM_RATE_96000 |
 			  SNDRV_PCM_RATE_192000),
-		.formats = (SNDRV_PCM_FMTBIT_S16_LE |
-			    SNDRV_PCM_FMTBIT_S20_3LE |
-			    SNDRV_PCM_FMTBIT_S24_LE),
+		.formats = SNDRV_PCM_FMTBIT_S24_LE,
 	},
 	.ops = &rk_spdifrx_dai_ops,
 };

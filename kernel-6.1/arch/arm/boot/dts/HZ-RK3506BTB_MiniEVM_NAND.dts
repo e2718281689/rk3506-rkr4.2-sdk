@@ -66,6 +66,39 @@
 		};
 	};
 
+	spdif_rx_dc: spdif-rx-dc {
+		compatible = "rockchip,dummy-codec";
+		#sound-dai-cells = <0>;
+	};
+
+	spdif_rx_sound: spdif-rx-sound {
+		compatible = "simple-audio-card";
+		simple-audio-card,name = "spdif-rx-sound";
+		simple-audio-card,cpu {
+			sound-dai = <&spdif_rx>;
+		};
+		simple-audio-card,codec {
+			sound-dai = <&spdif_rx_dc>;
+		};
+	};
+
+	spdif_tx_dc: spdif-tx-dc {
+		compatible = "rockchip,dummy-codec";
+		#sound-dai-cells = <0>;
+	};
+
+	spdif_tx_sound: spdif-tx-sound {
+		compatible = "simple-audio-card";
+		simple-audio-card,name = "spdif-tx-sound";
+		simple-audio-card,mclk-fs = <128>;
+		simple-audio-card,cpu {
+			sound-dai = <&spdif_tx>;
+		};
+		simple-audio-card,codec {
+			sound-dai = <&spdif_tx_dc>;
+		};
+	};
+
 	backlight: backlight {
 		compatible = "pwm-backlight";
 		pwms = <&pwm0_4ch_2 0 25000 0>;
@@ -546,6 +579,18 @@
 	status = "okay";
 };
 
+&spdif_rx {
+	pinctrl-names = "default";
+	pinctrl-0 = <&rm_io4_spdif_rx>;
+	status = "okay";
+};
+
+&spdif_tx {
+	pinctrl-names = "default";
+	pinctrl-0 = <&rm_io5_spdif_tx>;
+	status = "okay";
+};
+
 &saradc {
 	vref-supply = <&vcc_1v8>;
 	status = "okay";
@@ -570,10 +615,7 @@
 };
 
 &uart3 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&rm_io1_uart3_tx &rm_io4_uart3_rx>;
-	dma-names = "tx", "rx";
-	status = "okay";
+	status = "disabled";
 };
 
 &u2phy_otg0 {
