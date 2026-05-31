@@ -8,7 +8,7 @@ RK_ROOTFS_INSTALL_MODULES=y
 RK_UBOOT_CFG_FRAGMENTS="rk3506b rk-emmc"
 RK_UBOOT_SPL=y
 RK_KERNEL_CFG="rk3506_defconfig"
-RK_KERNEL_CFG_FRAGMENTS="rk3506-display.config rockchip_rt.config"
+RK_KERNEL_CFG_FRAGMENTS="rk3506-display.config rk3506-rt-minimal.config"
 RK_KERNEL_DTS_NAME="HZ-RK3506BTB_MiniEVM_NAND"
 # RK_RECOVERY is not set
 RK_BOOT_COMPRESSED=y
